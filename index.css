@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-space-950 text-white font-sans antialiased overflow-x-hidden;
+  }
+}
+
+/* Custom scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Print Styles for Study Plan & Timetable */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .printable-schedule, .printable-schedule * {
+    visibility: visible;
+  }
+  .printable-schedule {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: white !important;
+    color: black !important;
+    border: 2px solid black !important;
+  }
+}

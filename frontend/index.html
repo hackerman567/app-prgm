@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hall-o-Flow | Intelligent Scheduler</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              neon: {
+                cyan: '#00f3ff',
+                purple: '#bc13fe',
+                blue: '#4d4dff',
+                gold: '#ffd700',
+              },
+              royal: {
+                gold: '#D4AF37',
+                dark: '#0a0a0a',
+                obsidian: '#050505',
+                silver: '#E5E4E2'
+              },
+              space: {
+                950: '#030014',
+                900: '#0a0a1e',
+                800: '#12123a',
+              }
+            },
+            fontFamily: {
+              sans: ['Rajdhani', 'sans-serif'],
+              display: ['Orbitron', 'sans-serif'],
+              serif: ['Cinzel', 'serif'],
+              mono: ['Share Tech Mono', 'monospace'],
+            },
+            backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+              'glass': 'linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
+              'glass-heavy': 'linear-gradient(135deg, rgba(10, 10, 30, 0.7) 0%, rgba(0, 0, 0, 0.8) 100%)',
+              'glass-royal': 'linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(5, 5, 5, 0.95) 100%)',
+            },
+            animation: {
+              'spin-slow': 'spin 15s linear infinite',
+              'reverse-spin': 'spin 20s linear infinite reverse',
+              'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+              'scan': 'scan 3s linear infinite',
+              'nebula': 'nebula 60s linear infinite',
+              'glitch': 'glitch 0.5s cubic-bezier(.25, .46, .45, .94) both infinite',
+              'draw': 'draw 2s ease-out forwards',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              scan: {
+                '0%': { transform: 'translateY(-100%)', opacity: '0' },
+                '50%': { opacity: '1' },
+                '100%': { transform: 'translateY(100%)', opacity: '0' },
+              },
+              nebula: {
+                '0%': { transform: 'rotate(0deg) scale(1)' },
+                '50%': { transform: 'rotate(180deg) scale(1.1)' },
+                '100%': { transform: 'rotate(360deg) scale(1)' },
+              },
+              glitch: {
+                '0%': { transform: 'translate(0)' },
+                '20%': { transform: 'translate(-2px, 2px)' },
+                '40%': { transform: 'translate(-2px, -2px)' },
+                '60%': { transform: 'translate(2px, 2px)' },
+                '80%': { transform: 'translate(2px, -2px)' },
+                '100%': { transform: 'translate(0)' }
+              },
+              draw: {
+                '0%': { strokeDashoffset: '1000' },
+                '100%': { strokeDashoffset: '0' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Cinzel:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+      body {
+        cursor: none;
+        background-color: #030014;
+        transition: background-color 1s ease;
+      }
+      body.theme-royal {
+        background-color: #050505;
+      }
+      @media (max-width: 768px) {
+        body {
+          cursor: auto;
+        }
+      }
+      .hologram-text {
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(0, 243, 255, 0.5);
+        position: relative;
+      }
+      .theme-royal .hologram-text {
+        -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5);
+      }
+      .hologram-text::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #00f3ff;
+        opacity: 0.7;
+        filter: blur(4px);
+        animation: pulse 2s infinite;
+      }
+      .theme-royal .hologram-text::before {
+        color: #D4AF37;
+      }
+      
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 0 30px rgba(0, 243, 255, 0.05);
+      }
+      .scan-line {
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #00f3ff, transparent);
+        opacity: 0.5;
+        animation: scan 4s linear infinite;
+        pointer-events: none;
+      }
+      .theme-royal .scan-line {
+        background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      }
+    </style>
+  </head>
+  <body class="bg-space-950 text-white font-sans antialiased selection:bg-neon-cyan selection:text-black overflow-x-hidden transition-colors duration-1000">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
